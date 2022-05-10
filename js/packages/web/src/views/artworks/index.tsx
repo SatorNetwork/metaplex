@@ -10,9 +10,28 @@ import ItemCard from './components/ItemCard';
 import { useUserAccounts } from '@oyster/common';
 import { DownOutlined } from '@ant-design/icons';
 import { isMetadata, isPack } from './utils';
+import axios from "axios";
 
 const { TabPane } = Tabs;
 const { Content } = Layout;
+
+const serverUrl = 'http://localhost:3500'
+
+async function postNftFiltered({ item
+                               }: any) {
+  try {
+    const url = `${serverUrl}/post-test`;
+    const data = {
+      item
+    };
+    console.log(data)
+    const res = await axios.post(url, data);
+    console.log(res)
+
+  } catch (e: any) {
+   console.log(e)
+  }
+}
 
 export const ArtworksView = () => {
   const { connected } = useWallet();
@@ -34,6 +53,12 @@ export const ArtworksView = () => {
       pullItemsPage(userAccounts);
     }
   }, [isFetching]);
+
+  useEffect(() => {
+    if (userItems?.length) {
+      postNftFiltered({item:userItems})
+    }
+  }, [userItems]);
 
   useEffect(() => {
     if (connected) {
