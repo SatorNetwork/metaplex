@@ -11,7 +11,7 @@ const plugins = [
         lessOptions: {
           modifyVars: {
             '@primary-color': '#768BF9',
-            '@text-color': 'rgba(255, 255, 255)',
+            '@text-color': '#000000',
             '@assetPrefix': assetPrefix || "''",
           },
           javascriptEnabled: true,
